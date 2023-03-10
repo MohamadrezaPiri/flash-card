@@ -9,3 +9,6 @@ class FlashCardViewSet(ModelViewSet):
     queryset = FlashCard.objects.all()
     serializer_class = CreateFlashCardSerializer
     permission_classes = (IsAuthenticated,)
+
+    def get_serializer_context(self):
+        return {'user_id': self.request.user.id}
