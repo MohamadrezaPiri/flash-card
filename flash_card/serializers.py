@@ -1,6 +1,6 @@
 from djoser.serializers import UserCreateSerializer
 from rest_framework import serializers
-from .models import FlashCard
+from .models import FlashCard, Category
 
 
 class CreateUserProfileSerializer(UserCreateSerializer):
@@ -23,3 +23,9 @@ class CreateFlashCardSerializer(serializers.ModelSerializer):
 
         FlashCard.objects.create(
             user_id=user_id, question=question, answer=answer)
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = ('name',)
