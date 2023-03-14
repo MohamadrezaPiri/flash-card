@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
-from .permissions import IsOwnerOrReadOnly
+from .permissions import IsOwnerOrReadOnly, IsAdminOrReadOnly
 from .models import FlashCard, Category
 from .serializers import CreateFlashCardSerializer, CategorySerializer
 # Create your views here.
@@ -22,3 +22,4 @@ class FlashCardViewSet(ModelViewSet):
 class CategoryViewSet(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    permission_classes = (IsAdminOrReadOnly,)
