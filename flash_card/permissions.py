@@ -17,3 +17,12 @@ class IsOwnerOrReadOnly(BasePermission):
         if request.method in SAFE_METHODS:
             return True
         return bool(user and user.is_authenticated)
+
+
+class IsAdminOrReadOnly(BasePermission):
+    def has_permission(self, request, view):
+        user = request.user
+
+        if request.method in SAFE_METHODS:
+            return True
+        return bool(user and user.is_staff)
