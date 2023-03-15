@@ -9,6 +9,14 @@ class CreateUserProfileSerializer(UserCreateSerializer):
                   'last_name', 'email', 'password']
 
 
+class FlashCardSerializer(serializers.ModelSerializer):
+    category = serializers.StringRelatedField()
+
+    class Meta:
+        model = FlashCard
+        fields = ['id', 'user_id', 'category', 'question', 'answer']
+
+
 class CreateFlashCardSerializer(serializers.ModelSerializer):
     user_id = serializers.IntegerField(read_only=True)
 
