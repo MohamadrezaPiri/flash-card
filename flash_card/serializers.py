@@ -20,9 +20,10 @@ class CreateFlashCardSerializer(serializers.ModelSerializer):
         user_id = self.context['user_id']
         question = self.validated_data['question']
         answer = self.validated_data['answer']
+        category = self.validated_data['category']
 
         FlashCard.objects.create(
-            user_id=user_id, question=question, answer=answer)
+            user_id=user_id, question=question, answer=answer, category=category)
 
 
 class CategorySerializer(serializers.ModelSerializer):
