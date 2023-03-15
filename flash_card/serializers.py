@@ -14,7 +14,7 @@ class CreateFlashCardSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FlashCard
-        fields = ['id', 'user_id', 'question', 'answer']
+        fields = ['id', 'user_id', 'category', 'question', 'answer']
 
     def save(self):
         user_id = self.context['user_id']
