@@ -34,6 +34,12 @@ class CreateFlashCardSerializer(serializers.ModelSerializer):
             user_id=user_id, question=question, answer=answer, category=category)
 
 
+class UpdateFlashCardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = FlashCard
+        fields = ['category', 'question', 'answer']
+
+
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
