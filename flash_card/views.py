@@ -3,7 +3,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from .permissions import IsOwnerOrReadOnly, IsAdminOrReadOnly
 from .models import FlashCard, Category
-from .serializers import FlashCardSerializer, CreateFlashCardSerializer, CategorySerializer
+from .serializers import FlashCardSerializer, CreateFlashCardSerializer, UpdateFlashCardSerializer, CategorySerializer
 # Create your views here.
 
 
@@ -15,8 +15,12 @@ class FlashCardViewSet(ModelViewSet):
     ordering_fields = ('created_at',)
 
     def get_serializer_class(self):
-        if self.request.method == 'POST':
+        method = self.request.method
+
+        if method == 'POST':
             return CreateFlashCardSerializer
+        elif method == 'PUT':
+            return UpdateFlashCardSerializer
         return FlashCardSerializer
 
     def get_serializer_context(self):
