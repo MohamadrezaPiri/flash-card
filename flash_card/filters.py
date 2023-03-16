@@ -6,5 +6,5 @@ class FlashCardFilters(FilterSet):
     class Meta:
         model = FlashCard
         fields = {
-            'category': ['exact']
+            'category_id': ['exact']
         }
