@@ -1,6 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
+from .filters import FlashCardFilters
 from .permissions import IsOwnerOrReadOnly, IsAdminOrReadOnly
 from .models import FlashCard, Category
 from .serializers import FlashCardSerializer, CreateFlashCardSerializer, UpdateFlashCardSerializer, CategorySerializer
@@ -10,7 +11,8 @@ from .serializers import FlashCardSerializer, CreateFlashCardSerializer, UpdateF
 class FlashCardViewSet(ModelViewSet):
     queryset = FlashCard.objects.all()
     permission_classes = (IsOwnerOrReadOnly,)
-    filter_backends = (SearchFilter, OrderingFilter)
+    filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
+    filterset_class = FlashCardFilters
     search_fields = ('question',)
     ordering_fields = ('created_at',)
 
