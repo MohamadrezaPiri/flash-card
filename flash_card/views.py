@@ -1,4 +1,5 @@
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.filters import SearchFilter, OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from .filters import FlashCardFilters
@@ -13,6 +14,7 @@ class FlashCardViewSet(ModelViewSet):
     permission_classes = (IsOwnerOrReadOnly,)
     filter_backends = (DjangoFilterBackend, SearchFilter, OrderingFilter)
     filterset_class = FlashCardFilters
+    pagination_class = PageNumberPagination
     search_fields = ('question',)
     ordering_fields = ('created_at',)
 
