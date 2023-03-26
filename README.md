@@ -1,5 +1,5 @@
 ## Flash Card
-registered users can create flashcards in different categories
+registered users can create flashcards in different categories.
 ## Technologies used:
 ![image](https://img.shields.io/badge/Python-FFD43B?style=for-the-badge&logo=python&logoColor=blue)
 ![image](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=green)
@@ -30,5 +30,17 @@ py manage.py migrate
 ```
 py manage.py runserver
 ```
-
+## Usage
+- to Create an account:
+```
+http://127.0.0.1:8000/auth/users/
+```
+- For log in to your account:
+```
+http://127.0.0.1:8000/auth/jwt/create
+```
+- To create a flashcard:
+```
+http://127.0.0.1:8000/cards/
+```
 
