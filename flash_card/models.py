@@ -22,4 +22,4 @@ class FlashCard(models.Model):
     last_update = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.question
+        return f'{self.question[:10]}...'
