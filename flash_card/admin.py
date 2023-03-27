@@ -6,6 +6,7 @@ from .models import FlashCard, Category
 
 @admin.register(FlashCard)
 class FlashCardAdmin(admin.ModelAdmin):
+    list_display = ('user', 'category', 'title',)
     autocomplete_fields = ('user', 'category',)
 
 
