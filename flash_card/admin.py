@@ -3,5 +3,11 @@ from .models import FlashCard, Category
 
 # Register your models here.
 
-admin.site.register(FlashCard)
+
+@admin.register(FlashCard)
+class FlashCardAdmin(admin.ModelAdmin):
+    pass
+
+
+# admin.site.register(FlashCard)
 admin.site.register(Category)
