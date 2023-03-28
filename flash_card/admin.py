@@ -8,6 +8,7 @@ from .models import FlashCard, Category
 class FlashCardAdmin(admin.ModelAdmin):
     list_display = ('user', 'category', 'title',)
     list_filter = ('category', 'user')
+    list_editable = ('category',)
     autocomplete_fields = ('user', 'category',)
 
 
