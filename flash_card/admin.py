@@ -9,6 +9,7 @@ class FlashCardAdmin(admin.ModelAdmin):
     list_display = ('user', 'category', 'title',)
     list_filter = ('category', 'user')
     list_editable = ('category',)
+    list_per_page = 10
     autocomplete_fields = ('user', 'category',)
 
 
