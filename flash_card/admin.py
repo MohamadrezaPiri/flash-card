@@ -31,5 +31,9 @@ class CategoryAdmin(admin.ModelAdmin):
             }))
         return format_html('<a href="{}">{} cards</a>', url, category.cards_count)
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).annotate(
+            cards_count=Count('flashcard')
+        )
 
 
