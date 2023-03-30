@@ -21,6 +21,7 @@ class FlashCardAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     search_fields = ('name',)
+    list_display=('name','cards_count',)
 
     def cards_count(self, category):
         url = (
