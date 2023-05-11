@@ -25,6 +25,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = [CardsCountFilter]
     search_fields = ('name',)
 
+    @admin.display(ordering='cards_count')
     def cards_count(self, category):
         url = (
             reverse('admin:flash_card_flashcard_changelist')
