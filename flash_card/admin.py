@@ -10,7 +10,7 @@ from .models import FlashCard, Category
 @admin.register(FlashCard)
 class FlashCardAdmin(admin.ModelAdmin):
     list_display = ('user', 'category', 'title','last_update')
-    list_filter = ('category', 'user')
+    list_filter = ('category__name','user__username')
     list_editable = ('category',)
     list_per_page = 10
     autocomplete_fields = ('user', 'category',)
