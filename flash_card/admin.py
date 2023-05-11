@@ -22,7 +22,8 @@ class FlashCardAdmin(admin.ModelAdmin):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display=('name','cards_count',)
-    list_filter = [CardsCountFilter]
+    list_filter = (CardsCountFilter,)
+    list_per_page = 10
     search_fields = ('name',)
 
     @admin.display(ordering='cards_count')
