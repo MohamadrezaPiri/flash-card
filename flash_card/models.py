@@ -27,7 +27,7 @@ class FlashCard(models.Model):
 
     @property
     def title(self):
-        return truncatechars(self.question, 10)
+        return truncatechars(self.question, 20)
 
     def __str__(self):
         return f'{self.question[:10]}...'
