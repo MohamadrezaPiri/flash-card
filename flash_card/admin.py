@@ -25,6 +25,7 @@ class CategoryAdmin(admin.ModelAdmin):
     list_filter = (CardsCountFilter,)
     list_per_page = 10
     search_fields = ('name',)
+    actions = ('remove_cards',)
 
     @admin.display(ordering='cards_count')
     def cards_count(self, category):
