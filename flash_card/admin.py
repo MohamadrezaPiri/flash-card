@@ -3,6 +3,7 @@ from django.urls import reverse
 from django.utils.html import urlencode,format_html
 from django.db.models.aggregates import Count
 from .models import FlashCard, Category
+from .filters import CardsCountFilter
 
 # Register your models here.
 
@@ -20,8 +21,9 @@ class FlashCardAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    search_fields = ('name',)
     list_display=('name','cards_count',)
+    list_filter = [CardsCountFilter]
+    search_fields = ('name',)
 
     def cards_count(self, category):
         url = (
