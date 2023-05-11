@@ -1,4 +1,4 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.urls import reverse
 from django.utils.html import urlencode,format_html
 from django.db.models.aggregates import Count
@@ -41,4 +41,15 @@ class CategoryAdmin(admin.ModelAdmin):
             cards_count=Count('flashcard')
         )
 
+    @admin.action(description='Remove Cards')
+    def remove_cards(self, request, queryset):
+        total_cards_count = sum(category.flashcard_set.count() for category in queryset)
 
+        for category in queryset:
+            category.flashcard_set.all().delete()
+
+        self.message_user(
+            request,
+            f'{total_cards_count} cards were successfully removed',
+            messages.SUCCESS
+        )    
