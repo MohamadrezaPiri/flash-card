@@ -69,7 +69,7 @@ class UserAdmin(admin.ModelAdmin):
     fields = ('username','password','first_name','last_name','email','is_staff','is_superuser',)
     search_fields = ('username',)
 
-    def cards_(self, user):
+    def cards(self, user):
         url = (
             reverse('admin:flash_card_flashcard_changelist')
             + '?'
@@ -78,5 +78,9 @@ class UserAdmin(admin.ModelAdmin):
             }))
         return format_html('<a href="{}">{} cards</a>', url, user.cards)
 
+    def get_queryset(self, request):
+        return super().get_queryset(request).annotate(
+            cards=Count('flashcard')
+        )
 
     
