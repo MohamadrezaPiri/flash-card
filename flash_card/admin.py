@@ -68,3 +68,15 @@ class UserAdmin(admin.ModelAdmin):
     list_display = ('username','first_name','last_name','email','is_staff',)
     fields = ('username','password','first_name','last_name','email','is_staff','is_superuser',)
     search_fields = ('username',)
+
+    def cards_(self, user):
+        url = (
+            reverse('admin:flash_card_flashcard_changelist')
+            + '?'
+            + urlencode({
+                'user__id': str(user.id)
+            }))
+        return format_html('<a href="{}">{} cards</a>', url, user.cards)
+
+
+    
