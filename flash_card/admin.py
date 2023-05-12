@@ -1,4 +1,6 @@
 from django.contrib import admin, messages
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.html import urlencode,format_html
 from django.db.models.aggregates import Count
@@ -54,3 +56,13 @@ class CategoryAdmin(admin.ModelAdmin):
             f'{total_cards_count} cards were successfully removed',
             messages.SUCCESS
         )    
+
+
+
+
+admin.site.unregister(User)
+user = get_user_model()
+
+@admin.register(user)
+class UserAdmin(admin.ModelAdmin):
+    pass
