@@ -76,7 +76,11 @@ class UserAdmin(admin.ModelAdmin):
             + urlencode({
                 'user__id': str(user.id)
             }))
-        return format_html('<a href="{}">{} cards</a>', url, user.cards)
+        if user.cards == 1:
+            return format_html('<a href="{}">{} card</a>', url, user.cards)
+        elif user.cards == 0 or user.cards > 1:
+            return format_html('<a href="{}">{} cards</a>', url, user.cards)
+        
 
     def get_queryset(self, request):
         return super().get_queryset(request).annotate(
