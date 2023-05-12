@@ -37,6 +37,12 @@ class CategoryAdmin(admin.ModelAdmin):
             + urlencode({
                 'category__id': str(category.id)
             }))
+        if category.cards_count == 1:
+            return format_html('<a href="{}">{} card</a>', url, category.cards_count)
+        elif category.cards_count == 0 or category.cards_count > 1:
+            return format_html('<a href="{}">{} cards</a>', url, category.cards_count)
+        
+
         return format_html('<a href="{}">{} cards</a>', url, category.cards_count)
 
     def get_queryset(self, request):
