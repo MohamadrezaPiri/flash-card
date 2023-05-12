@@ -69,6 +69,7 @@ class UserAdmin(admin.ModelAdmin):
     fields = ('username','password','first_name','last_name','email','is_staff','is_superuser',)
     search_fields = ('username',)
 
+    @admin.display(ordering='cards')
     def cards(self, user):
         url = (
             reverse('admin:flash_card_flashcard_changelist')
