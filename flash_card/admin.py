@@ -66,4 +66,5 @@ user = get_user_model()
 @admin.register(user)
 class UserAdmin(admin.ModelAdmin):
     list_display = ('username','first_name','last_name','email','is_staff',)
+    fields = ('username','password','first_name','last_name','email','is_staff','is_superuser',)
     search_fields = ('username',)
