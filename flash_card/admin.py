@@ -77,6 +77,7 @@ class UserAdmin(admin.ModelAdmin):
     list_per_page = 10
     fields = ('username','password','first_name','last_name','email','is_staff','is_superuser',)
     search_fields = ('username',)
+    actions = ('delete_cards',)
 
     @admin.display(ordering='cards')
     def cards(self, user):
