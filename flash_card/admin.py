@@ -98,3 +98,15 @@ class UserAdmin(admin.ModelAdmin):
         )
 
     
+    @admin.action(description='Delete cards')
+    def delete_cards(self, request, queryset):
+       total_cards_count = sum(user.flashcard_set.count() for user in queryset)
+
+       for user in queryset:
+           user.flashcard_set.all().delete()
+
+       self.message_user(
+           request,
+           f'{total_cards_count} cards were successfully removed',
+           messages.SUCCESS
+       )     
